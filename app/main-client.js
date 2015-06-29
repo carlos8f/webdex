@@ -1,3 +1,134 @@
+// Set up GUI menu on OSX
+if (typeof require === 'function') {
+  var remote = require('remote');
+  var Menu = remote.require('menu');
+  var template = [
+    {
+      label: 'Electron',
+      submenu: [
+        {
+          label: 'About Electron',
+          selector: 'orderFrontStandardAboutPanel:'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Services',
+          submenu: []
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Hide Electron',
+          accelerator: 'Command+H',
+          selector: 'hide:'
+        },
+        {
+          label: 'Hide Others',
+          accelerator: 'Command+Shift+H',
+          selector: 'hideOtherApplications:'
+        },
+        {
+          label: 'Show All',
+          selector: 'unhideAllApplications:'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          selector: 'terminate:'
+        },
+      ]
+    },
+    {
+      label: 'Edit',
+      submenu: [
+        {
+          label: 'Undo',
+          accelerator: 'Command+Z',
+          selector: 'undo:'
+        },
+        {
+          label: 'Redo',
+          accelerator: 'Shift+Command+Z',
+          selector: 'redo:'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Cut',
+          accelerator: 'Command+X',
+          selector: 'cut:'
+        },
+        {
+          label: 'Copy',
+          accelerator: 'Command+C',
+          selector: 'copy:'
+        },
+        {
+          label: 'Paste',
+          accelerator: 'Command+V',
+          selector: 'paste:'
+        },
+        {
+          label: 'Select All',
+          accelerator: 'Command+A',
+          selector: 'selectAll:'
+        }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'Command+R',
+          click: function() { remote.getCurrentWindow().reload(); }
+        },
+        {
+          label: 'Toggle DevTools',
+          accelerator: 'Alt+Command+I',
+          click: function() { remote.getCurrentWindow().toggleDevTools(); }
+        },
+      ]
+    },
+    {
+      label: 'Window',
+      submenu: [
+        {
+          label: 'Minimize',
+          accelerator: 'Command+M',
+          selector: 'performMiniaturize:'
+        },
+        {
+          label: 'Close',
+          accelerator: 'Command+W',
+          selector: 'performClose:'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Bring All to Front',
+          selector: 'arrangeInFront:'
+        }
+      ]
+    },
+    {
+      label: 'Help',
+      submenu: []
+    }
+  ];
+
+  menu = Menu.buildFromTemplate(template);
+
+  Menu.setApplicationMenu(menu);
+}
 
 // Compatibility shim
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -11,77 +142,10 @@ var peer = new Peer({
   debug: 3
 });
 
-peer.on('open', function(){
-  $('#my-id').text(peer.id);
+peer.on('open', function (id) {
+  
 });
 
-// Receiving a call
-peer.on('call', function(call){
-  // Answer the call automatically (instead of prompting user) for demo purposes
-  call.answer(window.localStream);
-  step3(call);
-});
-peer.on('error', function(err){
+peer.on('error', function (err){
   alert(err.message);
-  // Return to step 2 if error occurs
-  step2();
 });
-
-// Click handlers setup
-$(function(){
-  $('#make-call').click(function(){
-    // Initiate a call!
-    var call = peer.call($('#callto-id').val(), window.localStream);
-
-    step3(call);
-  });
-
-  $('#end-call').click(function(){
-    window.existingCall.close();
-    step2();
-  });
-
-  // Retry if getUserMedia fails
-  $('#step1-retry').click(function(){
-    $('#step1-error').hide();
-    step1();
-  });
-
-  // Get things started
-  step1();
-});
-
-function step1 () {
-  // Get audio/video stream
-  navigator.getUserMedia({audio: true, video: true}, function(stream){
-    // Set your video displays
-    $('#my-video').prop('src', URL.createObjectURL(stream));
-
-    window.localStream = stream;
-    step2();
-  }, function(){ $('#step1-error').show(); });
-}
-
-function step2 () {
-  $('#step1, #step3').hide();
-  $('#step2').show();
-}
-
-function step3 (call) {
-  // Hang up on an existing call if present
-  if (window.existingCall) {
-    window.existingCall.close();
-  }
-
-  // Wait for stream on the call, then set peer video display
-  call.on('stream', function(stream){
-    $('#their-video').prop('src', URL.createObjectURL(stream));
-  });
-
-  // UI stuff
-  window.existingCall = call;
-  $('#their-id').text(call.peer);
-  call.on('close', step2);
-  $('#step1, #step2').hide();
-  $('#step3').show();
-}

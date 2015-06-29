@@ -1,38 +1,78 @@
+/* Space out content a bit */
 body {
-  background-color: black;
-  color: white;
-  font-size: 1.5em;
-  font-family: Helvetica, Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-#helloworld {
-  font-weight: 600;
-  font-size: 30px;
-  padding: 20px;
-  background-color: #4dace2;
-  border: 1px solid #0C6BA1;
-  max-width: 600px;
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
 }
-#browsers {
-  font-weight: 600;
+
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
 }
-.warning {
-  color: #333;
-  max-width: 600px;
-  padding: 20px;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  font-size: 18px;
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
 }
-.browserinfo {
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
 }
-a {
-  font-weight: 600;
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border: none;
+  background: transparent;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
 }
 input {
   background-color: black;
