@@ -8,7 +8,8 @@ requirejs.config({
     'peer': 'vendor/peer.min',
     'react': 'vendor/react.min',
     'JSXTransformer': 'vendor/JSXTransformer',
-    'menu': 'modules/menu'
+    'menu': 'modules/menu',
+    'dockmenu': 'modules/dockmenu'
   },
   shim: {
     'jquery': {

@@ -13,21 +13,18 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="vendor/yui.min.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="#">About</a></li>
-          </ul>
-        </nav>
         <div id="title"><h3 class="text-muted">WebDEX</h3></div>
       </div>
 
       <div class="jumbotron">
         <h1>Liberate the Internet.</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p class="lead">We support free and open <strong>decentralized</strong> communication. Social networks have become increasingly controlled by government agencies. The free people need an <strong>"internet"</strong> (with a lowercase "i") of their own, finally.</p>
         <p><a class="btn btn-lg btn-success" href="#" role="button" id="enter-dex">ENTER DEX&hellip;</a></p>
       </div>
 
@@ -35,6 +32,12 @@
         <div class="col-lg-12">
           <h4>Q: <em>What is the DEX?</em></h4>
           <p>A: The DEX is a renegade <strong style="font-size:1.3em">hyper-network</strong> over the Internet. The main difference is that it is <strong>fully decentralized</strong> and follows <strong>no "web standards"</strong>.</p>
+          <h4>Example</h4>
+          <script>
+          YUI().use('node', 'event', function (Y) {
+            // @todo
+          });
+          </script>
         </div>
       </div>
 
@@ -42,8 +45,11 @@
         <p>&copy; Small Co. 2015</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div>
 
-    <script data-main="config" src="vendor/require.min.js"></script>
+    <script src="vendor/react.min.js"></script>
+    <script src="vendor/JSXTransformer.js"></script>
+    <script src="vendor/peer.min.js"></script>
+    <script src="client.js"></script>
   </body>
 </html>
