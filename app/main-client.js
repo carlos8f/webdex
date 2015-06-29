@@ -133,19 +133,23 @@ if (typeof require === 'function') {
 // Compatibility shim
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-// PeerJS object
-var peer = new Peer({
-  // Connect to personal server.
-  host: 's8f.org',
-  port: 9000,
-  key: 's8f',
-  debug: 3
-});
+$(function () {
+  $('#enter-dex').click(function () {
+    // PeerJS object
+    var peer = new Peer({
+      // Connect to personal server.
+      host: 's8f.org',
+      port: 9000,
+      key: 's8f',
+      debug: 3
+    });
 
-peer.on('open', function (id) {
-  
-});
+    peer.on('open', function (id) {
+      alert('your id is: ' + id);
+    });
 
-peer.on('error', function (err){
-  alert(err.message);
+    peer.on('error', function (err){
+      alert(err.message);
+    });
+  });
 });
