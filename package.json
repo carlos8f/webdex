@@ -1,8 +1,8 @@
 {
   "name": "webdex",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "description": "Enter the DEX.",
+  "main": "dex.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/carlos8f/webdex.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Carlos Rodriguez <carlos@s8f.org>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/carlos8f/webdex/issues"
   },

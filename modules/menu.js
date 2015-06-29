@@ -1,7 +1,13 @@
-// Set up GUI menu on OSX
-if (typeof require === 'function') {
-  var remote = require('remote');
-  var Menu = remote.require('menu');
+define(function () {
+  // Set up GUI menu on OSX
+  try {
+    var remote = require('remote');
+    var Menu = remote.require('menu');
+  }
+  catch (e) {
+    return;
+  }
+
   var template = [
     {
       label: 'Electron',
@@ -126,30 +132,5 @@ if (typeof require === 'function') {
   ];
 
   menu = Menu.buildFromTemplate(template);
-
   Menu.setApplicationMenu(menu);
-}
-
-// Compatibility shim
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-$(function () {
-  $('#enter-dex').click(function () {
-    // PeerJS object
-    var peer = new Peer({
-      // Connect to personal server.
-      host: 's8f.org',
-      port: 9000,
-      key: 's8f',
-      debug: 3
-    });
-
-    peer.on('open', function (id) {
-      alert('your id is: ' + id);
-    });
-
-    peer.on('error', function (err){
-      alert(err.message);
-    });
-  });
 });
