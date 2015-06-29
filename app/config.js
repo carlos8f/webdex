@@ -2,13 +2,13 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
 requirejs.config({
-  basePath: 'modules',
   paths: {
     'jquery': 'vendor/jquery.min',
     'bootstrap': 'vendor/bootstrap.min',
     'peer': 'vendor/peer.min',
     'react': 'vendor/react.min',
-    'JSXTransformer': 'vendor/JSXTransformer'
+    'JSXTransformer': 'vendor/JSXTransformer',
+    'menu': 'modules/menu'
   },
   shim: {
     'jquery': {
