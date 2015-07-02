@@ -1,4 +1,3 @@
-require('modules/menu');
 require('vendor/peer.min');
 
 var carlos = new Peer('carlos', {
